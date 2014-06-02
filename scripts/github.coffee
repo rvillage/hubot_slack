@@ -26,8 +26,8 @@ module.exports = (robot) ->
     response = new robot.Response(robot, {room: room})
     response.send msg
 
-  # new cron('00 00 10 * * 1-5', () ->
-  new cronJob('*/10 * * * * *', () ->
+  new cronJob('00 05 16 * * 1-5', () ->
+  # new cronJob('*/10 * * * * *', () ->
     request = robot.http("https://api.github.com/repos/#{process.env.HUBOT_GITHUB_USER}/#{process.env.HUBOT_GITHUB_REPOSITORY}/pulls")
                    .auth(process.env.HUBOT_GITHUB_USER, process.env.HUBOT_GITHUB_TOKEN)
                    .get()
