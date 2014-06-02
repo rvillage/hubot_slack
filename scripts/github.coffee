@@ -23,7 +23,7 @@ cronJob = require('cron').CronJob
 
 module.exports = (robot) ->
   send = (room, msg) ->
-    response = new robot.Response(robot, {user : {id : -1, name : room}, text : 'none', done : false}, [])
+    response = new robot.Response(robot, {room: room})
     response.send msg
 
   # new cron('00 00 10 * * 1-5', () ->
