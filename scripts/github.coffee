@@ -26,7 +26,7 @@ module.exports = (robot) ->
     response = new robot.Response(robot, {room: room})
     response.send msg
 
-  new cronJob('00 05 16 * * 1-5', () ->
+  new cronJob('00 30 12 * * 1-5', () ->
   # new cronJob('*/10 * * * * *', () ->
     request = robot.http("https://api.github.com/repos/#{process.env.HUBOT_GITHUB_USER}/#{process.env.HUBOT_GITHUB_REPOSITORY}/pulls")
                    .auth(process.env.HUBOT_GITHUB_USER, process.env.HUBOT_GITHUB_TOKEN)
@@ -35,5 +35,5 @@ module.exports = (robot) ->
       prNum = body.split('\{\"url\"').length - 1
       if prNum > 0
         # [TODO] string to arrayをスマートにしたい
-        send '#github', "@all\nそろそろレビュータイムだわー。#{prNum} 件あるけど、余裕だよね？\nじっくり確認して11時から本気出す！\nhttps://github.com//#{process.env.HUBOT_GITHUB_USER}/#{process.env.HUBOT_GITHUB_REPOSITORY}/pulls"
+        send '#github', "レビュータイム デス\n#{prNum} ケン ノ プルリクエスト ガ アリマス\nhttps://github.com//#{process.env.HUBOT_GITHUB_USER}/#{process.env.HUBOT_GITHUB_REPOSITORY}/pulls"
   ).start()
