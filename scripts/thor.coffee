@@ -17,13 +17,15 @@
 # Author:
 #   rvillage
 
-run = (msg, command) ->
-  require('child_process').exec command, (error, stdout, stderr) ->
+exec = require('child_process').exec
+
+thorExec = (msg, command) ->
+  exec ('bundle exec thor ' + command), (error, stdout, stderr) ->
     if error
       msg.send stderr
     else
       msg.send stdout
 
 module.exports = (robot) ->
-  robot.respond /thor (.+)/i, (msg) ->
-    run(msg, 'bundle exec thor ' + msg.match[1])
+  robot.respond /thor (.+)?/i, (msg) ->
+    thorExec(msg, msg.match[1])
