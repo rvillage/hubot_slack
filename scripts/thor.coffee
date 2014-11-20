@@ -8,8 +8,7 @@
 #   HUBOT_GITHUB_REPOSITORY
 #
 # Commands:
-#   hubot <trigger> - <what the respond trigger does>
-#   <trigger> - <what the hear trigger does>
+#   hubot thor <command> - <Execute thor script>
 #
 # Notes:
 #   <optional notes required for the script>
