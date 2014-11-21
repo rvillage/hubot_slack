@@ -56,6 +56,7 @@ This is a modified set of instructions based on the [instructions on the Hubot w
   $ heroku config:set HUBOT_SLACK_TOKEN=<your slack token>
   $ heroku config:set HUBOT_SLACK_TEAM=<your slack team name>
   $ heroku config:set HUBOT_SLACK_BOTNAME=<your bot name>
+  $ heroku config:set BUILDPACK_URL=https://github.com/ddollar/heroku-buildpack-multi.git
   ```
 
 7. Deploy and start the bot:
