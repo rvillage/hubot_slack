@@ -9,17 +9,21 @@ module HubotSlack
   class GithubAdapter
     class << self
       def create_pbi(repository, title)
-        Octokit.create_issue("rvillage/#{repository}", title, pbi_body, labels: 'PBI').html_url
+        Octokit.create_issue(prefixed_repo(repository), title, pbi_body, labels: 'PBI').html_url
       end
 
       def create_release_pr(repository, title)
-        res = Octokit.create_pull_request("rvillage/#{repository}", 'master', 'develop', title, release_pr_body)
+        res = Octokit.create_pull_request(prefixed_repo(repository), 'master', 'develop', title, release_pr_body)
         add_label(repository, res.number, 'リリースブランチ')
 
         res.html_url
       end
 
       private
+
+      def prefixed_repo(repository)
+        "rvillage/#{repository}"
+      end
 
       def build_body(file_path)
         ERB.new(File.read(file_path)).result
@@ -34,7 +38,7 @@ module HubotSlack
       end
 
       def add_label(repository, issue_number, label)
-        Octokit.update_issue("rvillage/#{repository}", issue_number, labels: [label])
+        Octokit.update_issue(prefixed_repo(repository), issue_number, labels: [label])
       end
     end
   end
