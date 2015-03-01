@@ -1,4 +1,4 @@
 desc 'Reply with pong'
 task :ping do
-  puts 'PONG'
+  puts 'PING PONG'
 end
