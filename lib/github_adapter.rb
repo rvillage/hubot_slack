@@ -12,10 +12,29 @@ module HubotSlack
         Octokit.create_issue("rvillage/#{repository}", title, pbi_body, labels: 'PBI').html_url
       end
 
+      def create_release_pr(repository, title)
+        res = Octokit.create_pull_request("rvillage/#{repository}", 'master', 'develop', title, release_pr_body)
+        add_label(repository, res.number, 'リリースブランチ')
+
+        res.html_url
+      end
+
       private
 
+      def build_body(file_path)
+        ERB.new(File.read(file_path)).result
+      end
+
       def pbi_body
-        ERB.new(File.read("#{__dir__}/github_adapter/pbi_body.text.erb")).result
+        build_body("#{__dir__}/github_adapter/pbi_body.text.erb")
+      end
+
+      def release_pr_body
+        build_body("#{__dir__}/github_adapter/release_pr_body.text.erb")
+      end
+
+      def add_label(repository, issue_number, label)
+        Octokit.update_issue("rvillage/#{repository}", issue_number, labels: [label])
       end
     end
   end
