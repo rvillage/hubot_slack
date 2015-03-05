@@ -13,6 +13,7 @@
 # Logs
 logs
 *.log
+*.hubot_history
 
 # Runtime data
 pids
