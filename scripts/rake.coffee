@@ -5,6 +5,7 @@
 #   hubot rake - Exec `rake ping`.
 #   hubot Create PBI <REPOSITORY> <TITLE> - Create an issue (for PBI).
 #   hubot Create ReleasePR <REPOSITORY> <TITLE> - Create a pull request (for ReleaseBranch).
+#   hubot Create ReleaseTag <REPOSITORIES(,)> <TAG> "<TAG MESSAGE>" - Create a tag (for ReleaseTag).
 
 exec = require('child_process').exec
 
@@ -24,3 +25,8 @@ module.exports = (robot) ->
 
   robot.respond /CREATE RELEASEPR (.+) (.+)$/i, (msg) ->
     rakeExec(msg, "\"create_release_pr[#{msg.match[1]}, #{msg.match[2]}]\"")
+
+  robot.respond /CREATE RELEASETAG (.+?) (.+?) (\"|\')(.+?)(\"|\')$/i, (msg) ->
+    repositories = msg.match[1].split(',')
+    for repository in repositories
+      rakeExec(msg, "\"create_release_tag[#{repository}, #{msg.match[2]}, #{msg.match[4]}]\"")
