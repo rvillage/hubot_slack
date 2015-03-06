@@ -9,8 +9,6 @@ task :create_release_pr, ['repository', 'title'] do |task, args|
 end
 
 desc 'Create a tag of ReleaseTag'
-task :create_release_tag, ['repositories', 'tag', 'message'] do |task, args|
-  args.repositories.split(',').each do |repository|
-    puts HubotSlack::GithubAdapter.create_release_tag(repository, args.tag, args.message)
-  end
+task :create_release_tag, ['repository', 'tag', 'message'] do |task, args|
+  puts HubotSlack::GithubAdapter.create_release_tag(args.repository, args.tag, args.message)
 end
