@@ -2,10 +2,10 @@
 #   Execute ruby script
 #
 # Commands:
-#   hubot rake - Exec `rake ping`.
-#   hubot Create PBI <REPOSITORY> "<TITLE>" - Create an issue (for PBI).
-#   hubot Create ReleasePR <REPOSITORY> "<TITLE>" - Create a pull request (for ReleaseBranch).
-#   hubot Create ReleaseTag <REPOSITORIES(,)> <TAG> "<TAG MESSAGE>" - Create a tag (for ReleaseTag).
+#   :octocat: hubot rake - Exec `rake ping`.
+#   :octocat: hubot create pbi <REPOSITORY> "<TITLE>" - Create an issue (for PBI).
+#   :octocat: hubot create release pr <REPOSITORY> "<TITLE>" - Create a pull request (for ReleaseBranch).
+#   :octocat: hubot create release tag <REPOSITORIES(,)> <TAG> "<TAG MESSAGE>" - Create a tag (for ReleaseTag).
 
 exec = require('child_process').exec
 
@@ -20,13 +20,16 @@ module.exports = (robot) ->
   robot.respond /RAKE$/i, (msg) ->
     rakeExec(msg, 'ping')
 
-  robot.respond /CREATE PBI (.+?) (\"|\')(.+?)(\"|\')$/i, (msg) ->
-    rakeExec(msg, "\"create_pbi[#{msg.match[1]}, #{msg.match[3]}]\"")
+  robot.respond /CREATE PBI (.+?) [\"\'](.+?)[\"\']$/i, (msg) ->
+    msg.send('プロダクト バックログ イシュー ヲ サクセイ シテイマス')
+    rakeExec(msg, "\"create_pbi[#{msg.match[1]}, #{msg.match[2]}]\"")
 
-  robot.respond /CREATE RELEASEPR (.+?) (\"|\')(.+?)(\"|\')$/i, (msg) ->
-    rakeExec(msg, "\"create_release_pr[#{msg.match[1]}, #{msg.match[3]}]\"")
+  robot.respond /CREATE RELEASEPR (.+?) [\"\'](.+?)[\"\']$/i, (msg) ->
+    msg.send('リリース プルリクエスト ヲ サクセイ シテイマス')
+    rakeExec(msg, "\"create_release_pr[#{msg.match[1]}, #{msg.match[2]}]\"")
 
-  robot.respond /CREATE RELEASETAG (.+?) (.+?) (\"|\')(.+?)(\"|\')$/i, (msg) ->
+  robot.respond /CREATE RELEASETAG (.+?) [\"\']?(.+?)[\"\']? [\"\'](.+?)[\"\']$/i, (msg) ->
+    msg.send('リリース タグ ヲ サクセイ シテイマス')
     repositories = msg.match[1].split(',')
     for repository in repositories
-      rakeExec(msg, "\"create_release_tag[#{repository}, #{msg.match[2]}, #{msg.match[4]}]\"")
+      rakeExec(msg, "\"create_release_tag[#{repository}, #{msg.match[2]}, #{msg.match[3]}]\"")
