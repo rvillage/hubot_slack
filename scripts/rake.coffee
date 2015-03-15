@@ -33,3 +33,8 @@ module.exports = (robot) ->
     repositories = msg.match[1].split(',')
     for repository in repositories
       rakeExec(msg, "\"create_release_tag[#{repository}, #{msg.match[2]}, #{msg.match[3]}]\"")
+
+  robot.router.post "/hubot/pacemaker", (req, res) ->
+    response = new robot.Response(robot, {room: '#bot'})
+    rakeExec(response, 'notify_event')
+    res.end 'success'
