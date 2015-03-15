@@ -2,6 +2,9 @@ source "https://rubygems.org"
 
 ruby '2.2.0'
 
+gem 'activesupport'
+gem 'google-api-client'
+gem 'holidays'
 gem 'octokit'
 gem 'rake'
 
