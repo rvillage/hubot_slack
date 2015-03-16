@@ -35,6 +35,7 @@ module.exports = (robot) ->
       rakeExec(msg, "\"create_release_tag[#{repository}, #{msg.match[2]}, #{msg.match[3]}]\"")
 
   robot.router.post "/hubot/pacemaker", (req, res) ->
+    res.end 'failed' unless req.body.uuid == process.env.HUBOT_ACCESS_UUID
     response = new robot.Response(robot, {room: '#bot'})
     rakeExec(response, 'notify_event')
     res.end 'success'
