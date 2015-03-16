@@ -24,11 +24,11 @@ module.exports = (robot) ->
     msg.send('プロダクト バックログ イシュー ヲ サクセイ シテイマス')
     rakeExec(msg, "\"create_pbi[#{msg.match[1]}, #{msg.match[2]}]\"")
 
-  robot.respond /CREATE RELEASEPR (.+?) [\"\'](.+?)[\"\']$/i, (msg) ->
+  robot.respond /CREATE RELEASE PR (.+?) [\"\'](.+?)[\"\']$/i, (msg) ->
     msg.send('リリース プルリクエスト ヲ サクセイ シテイマス')
     rakeExec(msg, "\"create_release_pr[#{msg.match[1]}, #{msg.match[2]}]\"")
 
-  robot.respond /CREATE RELEASETAG (.+?) [\"\']?(.+?)[\"\']? [\"\'](.+?)[\"\']$/i, (msg) ->
+  robot.respond /CREATE RELEASE TAG (.+?) [\"\']?(.+?)[\"\']? [\"\'](.+?)[\"\']$/i, (msg) ->
     msg.send('リリース タグ ヲ サクセイ シテイマス')
     repositories = msg.match[1].split(',')
     for repository in repositories
