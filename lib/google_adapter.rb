@@ -7,7 +7,7 @@ module HubotSlack
     GOOGLE_API_KEY         = ENV['GOOGLE_API_KEY']
     GOOGLE_API_ACCOUNT     = ENV['GOOGLE_API_ACCOUNT']
     GOOGLE_API_CALENDAR_ID = ENV['GOOGLE_API_CALENDAR_ID']
-    CALENDAR_MARGIN        = 1.minutes
+    CALENDAR_MARGIN        = 30.minutes
     TIME_INTERVAL          = 30.minutes
 
     class << self
@@ -21,6 +21,7 @@ module HubotSlack
 
         new.schedules(start_time, end_time).each_with_object([]) {|schedule, messages|
           next if schedule.transparency == 'transparent'
+          next if schedule.start.dateTime < start_time
 
           messages << BodyBuilder.time_table(
                         schedule.summary,
