@@ -39,7 +39,7 @@ module HubotSlack
         audience:             'https://accounts.google.com/o/oauth2/token',
         scope:                'https://www.googleapis.com/auth/calendar.readonly',
         issuer:               GOOGLE_API_ACCOUNT,
-        signing_key:          GOOGLE_API_KEY
+        signing_key:          OpenSSL::PKey::RSA.new(ENV['GOOGLE_API_KEY'])
       )
       @client.authorization.fetch_access_token!
       @calendar = @client.discovered_api('calendar', 'v3')
