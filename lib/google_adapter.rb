@@ -34,7 +34,7 @@ module HubotSlack
     end
 
     def initialize
-      @client = Google::APIClient.new(application_name: 'hubot-slack')
+      @client = Google::APIClient.new(application_name: 'hubot_slack')
       @client.authorization = Signet::OAuth2::Client.new(
         token_credential_uri: 'https://accounts.google.com/o/oauth2/token',
         audience:             'https://accounts.google.com/o/oauth2/token',
