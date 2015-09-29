@@ -12,7 +12,9 @@ module HubotSlack
   class Task
     def self.delay!(current_time = Time.now)
       wake_up_time = (current_time.to_f / 30.minutes).round * 30.minutes - 3.minutes
-      sleep(wake_up_time - current_time.to_i)
+      if wake_up_time > current_time.to_i
+        sleep(wake_up_time - current_time.to_i)
+      end
     end
   end
 end
