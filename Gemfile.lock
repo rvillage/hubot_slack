@@ -17,6 +17,7 @@ GEM
       columnize (= 0.9.0)
     coderay (1.1.0)
     columnize (0.9.0)
+    dotenv (2.0.2)
     extlib (0.9.16)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
@@ -84,6 +85,7 @@ PLATFORMS
 DEPENDENCIES
   activesupport
   awesome_print
+  dotenv
   google-api-client
   holidays
   octokit

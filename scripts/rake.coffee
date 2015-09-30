@@ -1,3 +1,5 @@
+require('dotenv').load()
+
 # Description:
 #   Execute ruby script
 #

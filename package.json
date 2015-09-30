@@ -5,6 +5,7 @@
   "author": "rvillage <rvillage@gmail.com>",
   "description": "A simple helpful robot for your Company",
   "dependencies": {
+    "dotenv": "^1.2.0",
     "hubot": "^2.16.0",
     "hubot-diagnostics": "0.0.1",
     "hubot-help": "^0.1.1",
