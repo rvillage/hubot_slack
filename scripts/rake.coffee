@@ -1,5 +1,3 @@
-require('dotenv').load()
-
 # Description:
 #   Execute ruby script
 #
@@ -8,6 +6,8 @@ require('dotenv').load()
 #   :octocat: hubot create pbi <REPOSITORY> "<TITLE>" - Create an issue (for PBI).
 #   :octocat: hubot create release pr <REPOSITORY> "<TITLE>" - Create a pull request (for ReleaseBranch).
 #   :octocat: hubot create release tag <REPOSITORIES(,)> <TAG> "<TAG MESSAGE>" - Create a tag (for ReleaseTag).
+
+require('dotenv').load()
 
 exec = require('child_process').exec
 
