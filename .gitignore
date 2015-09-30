@@ -2,6 +2,7 @@
 *.gem
 *.rbc
 /.config
+/.env*
 /coverage/
 /InstalledFiles
 /pkg/
